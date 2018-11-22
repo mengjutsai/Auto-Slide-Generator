@@ -191,7 +191,7 @@ def _make_plots_6_1_(title, channel, CutStage, CutStage_name ,variable):
                 outF.write("\\end{figure}\n")
                 outF.write("\\end{frame}\n")
 
-def _make_plots_4_1_(title, channel, CutStage, CutStage_name ,variable):
+def _make_plots_4_1_(title, channel, CutStage ,variable):
                 outF.write("\\begin{frame}{"+title+"}\n")
                 outF.write("\\vspace{-0.5cm}\n")
                 outF.write("\\begin{figure}\n\\centering\n")
@@ -230,7 +230,15 @@ def _make_plots_4_1_(title, channel, CutStage, CutStage_name ,variable):
                         variable_name[i] = "Jet2-Eta"
                     if variable[i] == "Jet2_Phi":
                         variable_name[i] = "Jet2-Phi"
-                    outF.write("    \subfloat["+channel[i]+"-"+variable_name[i]+"]{\\includegraphics[width=0.35\\textwidth,height=0.4\\textheight]{"+file_path+channel[i]+"-"+CutStage[i]+"-"+variable[i]+".pdf"+"}}\n")
+                    if variable[i] == "nInteraction_old_1_09":
+                        variable_name[i] = "AverageMu(1.09)"
+                    if variable[i] == "nInteraction_new_1_03":
+                        variable_name[i] = "AverageMu(1.03)"
+                    if variable[i] == "skl1_5bins":
+                        variable_name[i] = "skl1-5bins"
+                    if variable[i] == "MT2_1jet":
+                        variable_name[i] = "MT2-1jet"
+                    outF.write("    \subfloat[R20.7-"+channel[i]+"-"+variable_name[i]+"]{\\includegraphics[width=0.35\\textwidth,height=0.4\\textheight, angle = 0]{"+abs_file_path+"/R20.7/"+channel[i]+"-"+CutStage[i]+"-"+variable[i]+"-lin.pdf"+"}}\n")
                 outF.write("\\end{figure}\n\\vspace{-0.8cm}\n")
                 outF.write("\\begin{figure}\n\\centering\n")
                 for i in range(2,4):
@@ -267,7 +275,15 @@ def _make_plots_4_1_(title, channel, CutStage, CutStage_name ,variable):
                         variable_name[i] = "Jet2-Eta"
                     if variable[i] == "Jet2_Phi":
                         variable_name[i] = "Jet2-Phi"
-                    outF.write("    \subfloat["+channel[i]+"-"+variable_name[i]+"]{\\includegraphics[width=0.35\\textwidth,height=0.4\\textheight]{"+file_path+channel[i]+"-"+CutStage[i]+"-"+variable[i]+".pdf"+"}}\n")
+                    if variable[i] == "nInteraction_old_1_09":
+                        variable_name[i] = "AverageMu(1.09)"
+                    if variable[i] == "nInteraction_new_1_03":
+                        variable_name[i] = "AverageMu(1.03)"
+                    if variable[i] == "skl1_5bins":
+                        variable_name[i] = "skl1-5bins"
+                    if variable[i] == "MT2_1jet":
+                        variable_name[i] = "MT2-1jet"
+                    outF.write("    \subfloat[R21-"+channel[i]+"-"+variable_name[i]+"]{\\includegraphics[width=0.35\\textwidth,height=0.4\\textheight, angle = 0]{"+abs_file_path+"/R21/"+channel[i]+"-"+CutStage[i]+"-"+variable[i]+"-lin.pdf"+"}}\n")
                 outF.write("\\end{figure}\n")
                 outF.write("\\end{frame}\n")
 
@@ -386,7 +402,6 @@ CutMET      = ["CutMET","CutMET", "CutMET", "CutMET", "CutMET", "CutMET"]
 CutGGF_1jet = ["CutGGF_1jet","CutGGF_1jet", "CutGGF_1jet", "CutGGF_1jet", "CutGGF_1jet", "CutGGF_1jet"]
 CutVBF_2jet = ["CutVBF_2jet","CutVBF_2jet", "CutVBF_2jet", "CutVBF_2jet", "CutVBF_2jet", "CutVBF_2jet"]
 
-CutFF_4plots       = ["CutFF","CutFF", "CutFF", "CutFF"]
 
 #name
 CutGGF_1jet_name = ["CutGGF-1jet","CutGGF-1jet", "CutGGF-1jet", "CutGGF-1jet", "CutGGF-1jet", "CutGGF-1jet"]
@@ -400,7 +415,8 @@ emme_channel = ["emme","emme","emme","emme","emme","emme"]
 
 em_me_comparison_channel = ["em","em","em","me","me","me"]
 
-em_me_comparison_channel_4plot = ["em","em","me","me"]
+em_me_comparison_channel_4plot = ["em","me","em","me"]
+
 
 MT = ["MT", "MT", "MT", "MT"]
 nJetsTight = ["nJetsTight", "nJetsTight", "nJetsTight", "nJetsTight"]
@@ -408,8 +424,8 @@ nInteraction = ["nInteraction_old_1_09", "nInteraction_old_1_09", "nInteraction_
 DPhill = ["DPhill", "DPhill", "DPhill", "DPhill"]
 Mll = ["Mll", "Mll", "Mll", "Mll"]
 contOLV = ["contOLV", "contOLV", "contOLV", "contOLV"]
-skl = ["skl", "skl", "skl", "skl"]
-skl_5bins = ["skl_5bins", "skl_5bins", "skl_5bins", "skl_5bins"]
+skl1 = ["skl1", "skl1", "skl1", "skl1"]
+skl1_5bins = ["skl1_5bins", "skl1_5bins", "skl1_5bins", "skl1_5bins"]
 DYjj = ["DYjj", "DYjj", "DYjj", "DYjj"]
 Mjj = ["Mjj", "Mjj", "Mjj", "Mjj"]
 SumOFMLepxJety = ["SumOFMLepxJety", "SumOFMLepxJety", "SumOFMLepxJety", "SumOFMLepxJety"]
@@ -426,24 +442,110 @@ leadLepPhi = ["leadLepPhi", "leadLepPhi", "leadLepPhi", "leadLepPhi"]
 subleadLepPt = ["subleadLepPt", "subleadLepPt", "subleadLepPt", "subleadLepPt"]
 subleadLepEta = ["subleadLepEta", "subleadLepEta", "subleadLepEta", "subleadLepEta"]
 subleadLepPhi = ["subleadLepPhi", "subleadLepPhi", "subleadLepPhi", "subleadLepPhi"]
+MT2_1jet = ["MT2_1jet", "MT2_1jet", "MT2_1jet", "MT2_1jet"]
+
+CutFF_4plots       = ["CutFF","CutFF", "CutFF", "CutFF"]
+CutTopContrl_4plots       = ["CutVBFTopControl_2jetinclZttVeto","CutVBFTopControl_2jetinclZttVeto", "CutVBFTopControl_2jetinclZttVeto", "CutVBFTopControl_2jetinclZttVeto"]
+CutZttContrl_4plots       = ["CutVBFZtautauControl_2jetinclOLV","CutVBFZtautauControl_2jetinclOLV", "CutVBFZtautauControl_2jetinclOLV", "CutVBFZtautauControl_2jetinclOLV"]
+CutWWContrl_4plots       = ["CutVBFWWControl_CJV20","CutVBFWWControl_CJV20", "CutVBFWWControl_CJV20", "CutVBFWWControl_CJV20"]
+
+
+CutFF_4plots       = ["CutFF","CutFF", "CutFF", "CutFF"]
+CutFF_4plots       = ["CutFF","CutFF", "CutFF", "CutFF"]
 
 
 make_frame("CutFF")
 # _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
 
-_make_plots_4_1_("CutFF - MT", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , MT)
-# _make_plots_4_1_("CutFF - nJetsTight", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , nJetsTight)
-# _make_plots_4_1_("CutFF - AverageMu(scaled)", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , nInteraction)
-# _make_plots_4_1_("CutFF - DPhill", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , DPhill)
-# _make_plots_4_1_("CutFF - Mll", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , Mll)
-# _make_plots_4_1_("CutFF - contOLV", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , contOLV)
-# _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
-# _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
-# _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
-# _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
-# _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
-# _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
-# _make_plots_4_1_("CutFF - ", em_me_comparison_channel_4plot, CutFF_4plots, CutFF_4plots , )
+_make_plots_4_1_("CutFF - MT", em_me_comparison_channel_4plot, CutFF_4plots , MT)
+_make_plots_4_1_("CutFF - nJetsTight", em_me_comparison_channel_4plot, CutFF_4plots , nJetsTight)
+_make_plots_4_1_("CutFF - AverageMu(scaled)", em_me_comparison_channel_4plot, CutFF_4plots , nInteraction)
+_make_plots_4_1_("CutFF - DPhill", em_me_comparison_channel_4plot, CutFF_4plots , DPhill)
+_make_plots_4_1_("CutFF - Mll", em_me_comparison_channel_4plot, CutFF_4plots , Mll)
+_make_plots_4_1_("CutFF - contOLV", em_me_comparison_channel_4plot, CutFF_4plots , contOLV)
+
+_make_plots_4_1_("CutFF - leadLepPt", em_me_comparison_channel_4plot, CutFF_4plots , leadLepPt)
+_make_plots_4_1_("CutFF - leadLepEta", em_me_comparison_channel_4plot, CutFF_4plots , leadLepEta)
+_make_plots_4_1_("CutFF - leadLepPhi", em_me_comparison_channel_4plot, CutFF_4plots , leadLepPhi)
+_make_plots_4_1_("CutFF - subleadLepPt", em_me_comparison_channel_4plot, CutFF_4plots , subleadLepPt)
+_make_plots_4_1_("CutFF - subleadLepEta", em_me_comparison_channel_4plot, CutFF_4plots , subleadLepEta)
+_make_plots_4_1_("CutFF - subleadLepPhi", em_me_comparison_channel_4plot, CutFF_4plots , subleadLepPhi)
+
+
+make_frame("Top CR")
+_make_plots_4_1_("Top CR - skl1", em_me_comparison_channel_4plot, CutTopContrl_4plots , skl1)
+_make_plots_4_1_("Top CR - skl1 5bins", em_me_comparison_channel_4plot, CutTopContrl_4plots , skl1_5bins)
+_make_plots_4_1_("Top CR - nJetsTight", em_me_comparison_channel_4plot, CutTopContrl_4plots , nJetsTight)
+_make_plots_4_1_("Top CR - DYjj", em_me_comparison_channel_4plot, CutTopContrl_4plots , DYjj)
+_make_plots_4_1_("Top CR - Mjj", em_me_comparison_channel_4plot, CutTopContrl_4plots , Mjj)
+_make_plots_4_1_("Top CR - contOLV", em_me_comparison_channel_4plot, CutTopContrl_4plots , contOLV)
+_make_plots_4_1_("Top CR - DPhill", em_me_comparison_channel_4plot, CutTopContrl_4plots , DPhill)
+_make_plots_4_1_("Top CR - Mll", em_me_comparison_channel_4plot, CutTopContrl_4plots , Mll)
+_make_plots_4_1_("Top CR - MT", em_me_comparison_channel_4plot, CutTopContrl_4plots , MT)
+_make_plots_4_1_("Top CR - SumOFMLepxJety", em_me_comparison_channel_4plot, CutTopContrl_4plots , SumOFMLepxJety)
+_make_plots_4_1_("Top CR - PtTot", em_me_comparison_channel_4plot, CutTopContrl_4plots , PtTot)
+_make_plots_4_1_("Top CR - leadJetPt", em_me_comparison_channel_4plot, CutTopContrl_4plots , leadJetPt)
+_make_plots_4_1_("Top CR - leadJetEta", em_me_comparison_channel_4plot, CutTopContrl_4plots , leadJetEta)
+_make_plots_4_1_("Top CR - leadJetPhi", em_me_comparison_channel_4plot, CutTopContrl_4plots , leadJetPhi)
+_make_plots_4_1_("Top CR - subleadJetPt", em_me_comparison_channel_4plot, CutTopContrl_4plots , subleadJetPt)
+_make_plots_4_1_("Top CR - subleadJetEta", em_me_comparison_channel_4plot, CutTopContrl_4plots , subleadJetEta)
+_make_plots_4_1_("Top CR - subleadJetPhi", em_me_comparison_channel_4plot, CutTopContrl_4plots , subleadJetPhi)
+_make_plots_4_1_("Top CR - leadLepPt", em_me_comparison_channel_4plot, CutTopContrl_4plots , leadLepPt)
+_make_plots_4_1_("Top CR - leadLepEta", em_me_comparison_channel_4plot, CutTopContrl_4plots , leadLepEta)
+_make_plots_4_1_("Top CR - leadLepPhi", em_me_comparison_channel_4plot, CutTopContrl_4plots , leadLepPhi)
+_make_plots_4_1_("Top CR - subleadLepPt", em_me_comparison_channel_4plot, CutTopContrl_4plots , subleadLepPt)
+_make_plots_4_1_("Top CR - subleadLepEta", em_me_comparison_channel_4plot, CutTopContrl_4plots , subleadLepEta)
+_make_plots_4_1_("Top CR - subleadLepPhi", em_me_comparison_channel_4plot, CutTopContrl_4plots , subleadLepPhi)
+
+make_frame("Z$\\tau\\tau$ CR")
+
+_make_plots_4_1_("Z$\\tau\\tau$ CR - skl1", em_me_comparison_channel_4plot, CutZttContrl_4plots , skl1)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - skl1 5bins", em_me_comparison_channel_4plot, CutZttContrl_4plots , skl1_5bins)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - nJetsTight", em_me_comparison_channel_4plot, CutZttContrl_4plots , nJetsTight)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - DYjj", em_me_comparison_channel_4plot, CutZttContrl_4plots , DYjj)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - Mjj", em_me_comparison_channel_4plot, CutZttContrl_4plots , Mjj)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - contOLV", em_me_comparison_channel_4plot, CutZttContrl_4plots , contOLV)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - DPhill", em_me_comparison_channel_4plot, CutZttContrl_4plots , DPhill)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - Mll", em_me_comparison_channel_4plot, CutZttContrl_4plots , Mll)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - MT", em_me_comparison_channel_4plot, CutZttContrl_4plots , MT)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - SumOFMLepxJety", em_me_comparison_channel_4plot, CutZttContrl_4plots , SumOFMLepxJety)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - PtTot", em_me_comparison_channel_4plot, CutZttContrl_4plots , PtTot)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - leadJetPt", em_me_comparison_channel_4plot, CutZttContrl_4plots , leadJetPt)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - leadJetEta", em_me_comparison_channel_4plot, CutZttContrl_4plots , leadJetEta)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - leadJetPhi", em_me_comparison_channel_4plot, CutZttContrl_4plots , leadJetPhi)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - subleadJetPt", em_me_comparison_channel_4plot, CutZttContrl_4plots , subleadJetPt)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - subleadJetEta", em_me_comparison_channel_4plot, CutZttContrl_4plots , subleadJetEta)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - subleadJetPhi", em_me_comparison_channel_4plot, CutZttContrl_4plots , subleadJetPhi)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - leadLepPt", em_me_comparison_channel_4plot, CutZttContrl_4plots , leadLepPt)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - leadLepEta", em_me_comparison_channel_4plot, CutZttContrl_4plots , leadLepEta)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - leadLepPhi", em_me_comparison_channel_4plot, CutZttContrl_4plots , leadLepPhi)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - subleadLepPt", em_me_comparison_channel_4plot, CutZttContrl_4plots , subleadLepPt)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - subleadLepEta", em_me_comparison_channel_4plot, CutZttContrl_4plots , subleadLepEta)
+_make_plots_4_1_("Z$\\tau\\tau$ CR - subleadLepPhi", em_me_comparison_channel_4plot, CutZttContrl_4plots , subleadLepPhi)
+
+make_frame("WW VR")
+_make_plots_4_1_("WW VR - MT2-1jet", em_me_comparison_channel_4plot, CutWWContrl_4plots , MT2_1jet)
+_make_plots_4_1_("WW VR - nJetsTight", em_me_comparison_channel_4plot, CutWWContrl_4plots , nJetsTight)
+_make_plots_4_1_("WW VR - DYjj", em_me_comparison_channel_4plot, CutWWContrl_4plots , DYjj)
+_make_plots_4_1_("WW VR - Mjj", em_me_comparison_channel_4plot, CutWWContrl_4plots , Mjj)
+_make_plots_4_1_("WW VR - contOLV", em_me_comparison_channel_4plot, CutWWContrl_4plots , contOLV)
+_make_plots_4_1_("WW VR - DPhill", em_me_comparison_channel_4plot, CutWWContrl_4plots , DPhill)
+_make_plots_4_1_("WW VR - Mll", em_me_comparison_channel_4plot, CutWWContrl_4plots , Mll)
+_make_plots_4_1_("WW VR - MT", em_me_comparison_channel_4plot, CutWWContrl_4plots , MT)
+_make_plots_4_1_("WW VR - SumOFMLepxJety", em_me_comparison_channel_4plot, CutWWContrl_4plots , SumOFMLepxJety)
+_make_plots_4_1_("WW VR - PtTot", em_me_comparison_channel_4plot, CutWWContrl_4plots , PtTot)
+_make_plots_4_1_("WW VR - leadJetPt", em_me_comparison_channel_4plot, CutWWContrl_4plots , leadJetPt)
+_make_plots_4_1_("WW VR - leadJetEta", em_me_comparison_channel_4plot, CutWWContrl_4plots , leadJetEta)
+_make_plots_4_1_("WW VR - leadJetPhi", em_me_comparison_channel_4plot, CutWWContrl_4plots , leadJetPhi)
+_make_plots_4_1_("WW VR - subleadJetPt", em_me_comparison_channel_4plot, CutWWContrl_4plots , subleadJetPt)
+_make_plots_4_1_("WW VR - subleadJetEta", em_me_comparison_channel_4plot, CutWWContrl_4plots , subleadJetEta)
+_make_plots_4_1_("WW VR - subleadJetPhi", em_me_comparison_channel_4plot, CutWWContrl_4plots , subleadJetPhi)
+_make_plots_4_1_("WW VR - leadLepPt", em_me_comparison_channel_4plot, CutWWContrl_4plots , leadLepPt)
+_make_plots_4_1_("WW VR - leadLepEta", em_me_comparison_channel_4plot, CutWWContrl_4plots , leadLepEta)
+_make_plots_4_1_("WW VR - leadLepPhi", em_me_comparison_channel_4plot, CutWWContrl_4plots , leadLepPhi)
+_make_plots_4_1_("WW VR - subleadLepPt", em_me_comparison_channel_4plot, CutWWContrl_4plots , subleadLepPt)
+_make_plots_4_1_("WW VR - subleadLepEta", em_me_comparison_channel_4plot, CutWWContrl_4plots , subleadLepEta)
+_make_plots_4_1_("WW VR - subleadLepPhi", em_me_comparison_channel_4plot, CutWWContrl_4plots , subleadLepPhi)
 
 
 
@@ -521,10 +623,13 @@ outF.close()
 
 # print(here, texfile_path)
 
+# os.system("pdflatex "+here+"/slides/Validation.tex")
+# os.system("pdflatex "+here+"/slides/Validation.tex")
+
 if len(sys.argv)==2:
     print(here)
-    # os.system("pdflatex "+here+"/Validation.tex")
-    # os.system("pdflatex "+here+"/Validation.tex")
+    os.system("pdflatex "+here+"/slides/Validation.tex")
+    os.system("pdflatex "+here+"/slides/Validation.tex")
 if len(sys.argv)==3:
     print(texfile_path)
     # os.system("pdflatex "+texfile_path+"Validation.tex")
